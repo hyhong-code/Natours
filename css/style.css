@@ -14,7 +14,7 @@ body {
   color: #777;
   padding: 30px;
 }
-
+/* ************************************* HEADER SECTION ************************************* */
 .header {
   height: 95vh;
   /* Two background imgs, one on top of another */
@@ -26,8 +26,156 @@ body {
     url(../img/hero.jpg);
   background-size: cover;
   background-position: top;
+  position: relative;
   /* Use clip-path to get desired visible background shape */
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}
+
+.logo-box {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+
+.logo {
+  height: 35px;
+}
+
+.text-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  /* -50% for this transform translate is relative to this div itself, not parent */
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  backface-visibility: hidden; /* To fix animation shaking problem */
+  margin-bottom: 60px;
+}
+
+.heading-primary-main {
+  display: block;
+  font-size: 60px;
+  font-weight: 400;
+  letter-spacing: 35px;
+  /* Apply the keyframe animation */
+  animation-name: moveInLeft;
+  animation-duration: 1s;
+  animation-timing-function: ease-out; /* faster beginning, slower end */
+  /* animation-delay: 3s;
+  animation-iteration-count: 3; */
+}
+
+.heading-primary-sub {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 17.4px;
+
+  animation: moveInRight 1s ease-out;
+}
+
+/* Only animate 2 properties at once for browser performance */
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  80% {
+    transform: translateX(10px);
+  }
+  100% {
+    opacity: 1;
+    /* translate 0 to look exactly the way it is right now */
+    transform: translate(0);
+  }
+}
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  80% {
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+/* :link pseudo class means the a tag has not yet been visited */
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block; /* change the a tag to a block to use box model */
+  border-radius: 100px;
+  /* Use transition to animaate the tranforms,
+  has to be applied on initail state. */
+  transition: all 0.2s; /* Apply all properties for transition */
+  position: relative;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* active pseudo class is when the a tag is clicked */
+.btn:active {
+  transform: translateY(-1px); /* -1px related to the original state */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
+}
+
+/* ::after creates a pseudo-element that is the last child of the selected element */
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%; /* reletive to selected element */
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; /* make it behind the selected element */
+  transition: all 0.4s; /* transiton for hover animation */
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0; /* make the puesdo button fade out */
+}
+
+.btn-animated {
+  /* animation shorthand: name, duration, timing function, delay */
+  animation: moveInBottom 0.5s ease-out 0.75s;
+  animation-fill-mode: backwards; /* So that button propertys are at 0% before animation */
 }
 
 /*
