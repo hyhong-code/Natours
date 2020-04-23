@@ -1,0 +1,61 @@
+.btn {
+  /* :link pseudo class means the a tag has not yet been visited */
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block; /* change the a tag to a block to use box model */
+    border-radius: 10rem;
+    /* Use transition to animaate the tranforms,
+  has to be applied on initail state. */
+    transition: all 0.2s; /* Apply all properties for transition */
+    position: relative;
+    font-size: 1.6rem;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0; /* make the puesdo button fade out */
+    }
+  }
+
+  /* active pseudo class is when the a tag is clicked */
+  &:active {
+    transform: translateY(-1px); /* -1px related to the original state */
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+
+    &::after {
+      background-color: $color-white;
+    }
+  }
+
+  /* ::after creates a pseudo-element that is the last child of the selected element */
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 100%; /* reletive to selected element */
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; /* make it behind the selected element */
+    transition: all 0.4s; /* transiton for hover animation */
+  }
+
+  &--animated {
+    /* animation shorthand: name, duration, timing function, delay */
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    animation-fill-mode: backwards; /* So that button propertys are at 0% before animation */
+  }
+}

@@ -1,0 +1,19 @@
+// Partial for low level basics: resets, styles for HTML and body elements
+
+/* Cross Browser Basic Reset */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; /* All elements inherit body's border-box */
+}
+
+html {
+  font-size: 62.5%; /* 62.5% of default 16px is 10px, So that 1rem is 10px */
+}
+
+/* Overall Font Properties */
+body {
+  box-sizing: border-box;
+}
