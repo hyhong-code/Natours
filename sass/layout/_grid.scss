@@ -2,7 +2,6 @@
   // max-width: if viewport larger than 114rem, width is 114rem
   // otherwise it fills 100% of the viewport
   max-width: $grid-width; // 1140px
-  background-color: #eee;
   // center a block element inside another block element
   margin: 0 auto;
 
@@ -14,7 +13,6 @@
   @include clearfix;
 
   [class^="col-"] {
-    background-color: red;
     float: left; // always float left when using float layout
 
     // all column except for last one need right margin
