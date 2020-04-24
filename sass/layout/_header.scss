@@ -12,6 +12,7 @@
   background-position: top;
   position: relative;
   /* Use clip-path to get desired visible background shape */
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 
   // .header is copied to where & is.
