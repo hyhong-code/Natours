@@ -39,6 +39,15 @@
     }
   }
 
+  &--green {
+    background-color: $color-primary;
+    color: white;
+
+    &::after {
+      background-color: $color-primary;
+    }
+  }
+
   /* ::after creates a pseudo-element that is the last child of the selected element */
   &::after {
     content: "";
