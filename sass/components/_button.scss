@@ -1,5 +1,6 @@
 .btn {
   /* :link pseudo class means the a tag has not yet been visited */
+  &,
   &:link,
   &:visited {
     text-transform: uppercase;
@@ -12,6 +13,10 @@
     transition: all 0.2s; /* Apply all properties for transition */
     position: relative;
     font-size: $default-font-size;
+
+    // Change for button element
+    border: none;
+    cursor: pointer;
   }
 
   &:hover {
@@ -25,7 +30,9 @@
   }
 
   /* active pseudo class is when the a tag is clicked */
-  &:active {
+  &:active,
+  &:focus {
+    outline: none;
     transform: translateY(-1px); /* -1px related to the original state */
     box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
   }
