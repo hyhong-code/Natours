@@ -8,6 +8,13 @@
   z-index: 9999;
   transition: all 0.3s;
 
+  // feature support query selector
+  @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba($color-black, 0.5);
+  }
+
   // hide the element, cant use display:none because no number unable to animate
   // send target to other #ids to close it
   opacity: 0;

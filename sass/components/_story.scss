@@ -31,17 +31,22 @@
     float: left;
     position: relative;
     overflow: hidden; // treat line around edge after using filter on image
-
-    // circle(radius at posX posY): so that text appears wrapping around a circle
-    // only works when element is floated and have defined width and height
-    -webkit-shape-outside: circle(50% at 50% 50%);
-    shape-outside: circle(50% at 50% 50%);
-    // actual make it a circle
-    -webkit-clip-path: circle(50% at 50% 50%);
-    clip-path: circle(50% at 50% 50%);
+    border-radius: 50%;
 
     // create some space between figure and text, because its floated, don't use margin
     transform: translateX(-3rem) skewX(12deg); // an element can only have one transform property
+
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+      // actual make it a circle
+      -webkit-clip-path: circle(50% at 50% 50%);
+      clip-path: circle(50% at 50% 50%);
+
+      // circle(radius at posX posY): so that text appears wrapping around a circle
+      // only works when element is floated and have defined width and height
+      -webkit-shape-outside: circle(50% at 50% 50%);
+      shape-outside: circle(50% at 50% 50%);
+      border-radius: none;
+    }
 
     @include respond(phone) {
       transform: translateX(-3rem) skewX(0);
